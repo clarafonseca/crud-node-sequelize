@@ -1,11 +1,7 @@
-const express = require('express');
-const routes = require('./routes/user.routes');
+const app = require('./config/express');
 
-const app = express();
-app.use(express.json());
-app.use('/v1/users', routes);
-// console.log(`/v1/${routes.name}`)
+const port = app.get('port');
 
-app.listen(3000, () => {
-  console.log(`Application currently running on port: ${3000}`);
-});
+app.listen(port, () => console.info(
+  `Application currently running on port: ${port}`,
+));

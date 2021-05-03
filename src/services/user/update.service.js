@@ -3,24 +3,18 @@ const { StatusCodes } = require('http-status-codes');
 const { messages } = require('../../utils');
 const userRepository = require('../../repositories/user.repository');
 
-// Alterar o sobrenome e o endereço do usuário recebido no corpo da requisição,
-// baseado no id recebido como parâmetro de rota:
-// retorna o usuário alterado com as novas informações.
-
 module.exports.update = async (id, body) => {
   const user = await userRepository.findOne({
     where: {
       id,
     },
   });
-  // Msg de erro n esta printando
-  const err = {
-    status: StatusCodes.NOT_FOUND,
-    message: messages.notFound('user'),
-  };
 
   if (!user) {
-    throw err;
+    throw {
+      status: StatusCodes.NOT_FOUND,
+      message: messages.notFound('user'),
+    };
   }
 
   const schema = yup.object().shape({
@@ -36,5 +30,13 @@ module.exports.update = async (id, body) => {
     user.setDataValue(key, validated[key]);
   });
 
-  return userRepository.update(user);
+  const userUpdated = await userRepository.update(user);
+
+  return {
+    firstName: userUpdated.getDataValue('firstName'),
+    lastName: userUpdated.getDataValue('lastName'),
+    nickname: userUpdated.getDataValue('nickname'),
+    adress: userUpdated.getDataValue('adress'),
+    bio: userUpdated.getDataValue('bio'),
+  };
 };

@@ -3,4 +3,5 @@ module.exports.messages = {
   internalServerError: 'internal-server-error',
   notFound: (param) => `${param}-not-found`,
   nicknameUnavailable: 'nickname-unavailable',
+  sucess: (param) =>  `${param}-sucessfully`,
 };

@@ -3,28 +3,18 @@ const { StatusCodes } = require('http-status-codes');
 const { messages } = require('../../utils');
 const userRepository = require('../../repositories/user.repository');
 
-// Listar todos os usuários cadastrados filtrados pelos campos nome e/ou sobrenome,
-// filtrados por parâmetros de consulta: retorna um array de usuários.
-
-// VERIFICAR SEGURANÇA,
-// TRATAMENTO DO RETORNO
-// MENSAGEM CASO TENTEM ALTERAR ALGO ALEM DO NICKNAME
-// MENSAGEM DE ERRO EM GERAL
-
 module.exports.patch = async (id, body) => {
   const user = await userRepository.findOne({
     where: {
       id,
     },
   });
-  // Msg de erro n esta printando
-  const err = {
-    status: StatusCodes.NOT_FOUND,
-    message: messages.notFound('user'),
-  };
 
   if (!user) {
-    throw err;
+    throw {
+      status: StatusCodes.NOT_FOUND,
+      message: messages.notFound('user'),
+    };
   }
 
   const schema = yup.object().shape({
@@ -41,16 +31,20 @@ module.exports.patch = async (id, body) => {
     },
   });
 
-  const clonfict = {
-    status: StatusCodes.CONFLICT,
-    message: messages.nicknameUnavailable,
-  };
-
   if (nickname) {
-    throw clonfict;
+    throw {
+      status: StatusCodes.CONFLICT,
+      message: messages.nicknameUnavailable,
+    };
   }
 
   user.setDataValue('nickname', validated.nickname);
-
-  return userRepository.update(user);
+  const userUpdated = await userRepository.update(user)
+  return {
+    firstName: userUpdated.getDataValue('firstName'),
+    lastName: userUpdated.getDataValue('lastName'),
+    nickname: userUpdated.getDataValue('nickname'),
+    adress: userUpdated.getDataValue('adress'),
+    bio: userUpdated.getDataValue('bio'),
+  };
 };

@@ -21,18 +21,25 @@ module.exports = {
       console.error(error);
       return res
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
-        .json(error.messages);
+        .json(error.message);
     }
   },
   list: async (req, res) => {
     try {
+      // Por via das duvidas deixei comentada a função que impede o retorno
+      // de todos os usuarios
+      // if (Object.keys(req.query).length === 0) {
+      //   return res
+      //     .status(StatusCodes.BAD_REQUEST)
+      //     .json('No parameters passed, try again');
+      // }
       const response = await usersService.list(req.query);
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
       console.error(error);
       return res
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
-        .json(error.messages);
+        .json(error.message);
     }
   },
   update: async (req, res) => {

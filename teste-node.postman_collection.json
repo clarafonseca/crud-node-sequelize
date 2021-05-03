@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "914c18b0-b016-4788-80ca-baebaa62a8f2",
+		"name": "teste-node",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4NzkwODczfQ.dTa4qEPNK_w2T-e4JbzmBHv9bHbJCDPipX8hfZBJIs4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Ana Banana\",\r\n    \"lastName\": \"Fonseca Campos\",\r\n    \"nickname\": \"anabanana\",\r\n    \"adress\": \"Rua dos Bobos, 0\",\r\n    \"bio\": \"Ola! Como vai?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/users/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"users",
+								"create"
+							]
+						},
+						"description": "register an user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/v1/users/joaodoe3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"users",
+								"joaodoe3"
+							],
+							"query": [
+								{
+									"key": "bla",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4Nzg2Mzg3fQ.9fYAVOV8RAL1wnqrGUzsU2wnMTnF7TWR2G_sbr_uisY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 951d1967ea59cca2f9bdc0491772ecd4caace35f0c64e1d6f69607350e57eb4d",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/v1/users?firstName=Ana Clara",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "Ana Clara"
+								},
+								{
+									"key": "lastName",
+									"value": "Fonseca Campos",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Users List"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4Nzg2Mzg3fQ.9fYAVOV8RAL1wnqrGUzsU2wnMTnF7TWR2G_sbr_uisY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"lastName\": \"Deo\",\n  \"adress\": \"Rua Olivia, 45\",\n  \"bio\": \"Alo galera!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBpb2FzeXMuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjE4Nzg2Mzg3fQ.9fYAVOV8RAL1wnqrGUzsU2wnMTnF7TWR2G_sbr_uisY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nickname\": \"joaodoe6\",\n  \"bio\": \"Ola, teste\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJjbGFyYWZvbnNlY2FAaW9hc3lzLmNvbSIsImlzQWRtaW4iOm51bGwsImlhdCI6MTYxODc4NzY0N30.MmRNYadO2LMNhq5VqYMQs3NVOkjFHnuyO4G9ROOqtYk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/users/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"users",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

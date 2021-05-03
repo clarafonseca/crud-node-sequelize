@@ -1,46 +1,62 @@
-### Teste para vaga backend com Node.Js
+# A aplicação
 
-#### Contexto
+- API REST capaz de realizar o `C.R.U.D.` seguindo os padrões atuais, manipulando os valores de entrada, processando e retornando os dados, mensagens e status coerentes.
 
-- Construir uma API REST capaz de realizar o `C.R.U.D.` seguindo os padrões atuais, manipulando os valores de entrada, processando e retornando os dados, mensagens e status coerentes.
+- [x] A API deve seguir os princípios do desgin pattern `RESTful.`
+- [x] Manipulação de dados no padrão `JSON`.
+- [x] Os dados referentes à(s) entidade(s) devem ser persistidos em BD.
+- [x] Isole as operações feitas diretamente no banco de dados em repositórios.
+- [x] Retorno das requisições e status com semântica nas operações realizadas.
+- [x] Tratamento de erros e exceções.
 
----
+## Como rodar a aplicação
 
-#### Especificações da aplicação
+### Instalar os pacotes
+> `npm install`
+> `node src/app`
 
-- Utilize `JavaScript` ou `TypeScript`.
-- Utilize as **ferramentas de sua preferência** para manipulação de requisições _http_, _banco de dados_ e outros.
-- A aplicação deve ser construída utilizando o `design pattern` padrão do **MVC**.
+### Banco de dados
 
----
+- Preencha o arquivo `.env.example`
+- No terminal rode:
+  > `npx sequelize db:migrate`
 
-##### RNF
+### Rotas & Métodos
 
-##### **Obrigatório**
+Use o link `https://www.getpostman.com/collections/f0828cd4d38f61c8c9a7` para testar as rotas com o postman!
 
-- A API deve seguir os princípios do desgin pattern `RESTful.`
-- Manipulação de dados no padrão `JSON`.
-- Os dados referentes à(s) entidade(s) devem ser persistidos em BD.
-- Isole as operações feitas diretamente no banco de dados em repositórios.
-- Retorno das requisições e status com semântica nas operações realizadas.
-- Tratamento de erros e exceções.
+#### Criar usuário 
 
-##### **Bônus**
+- Rota: `router.post('/create', usersController.create);`
+- Passe no body as seguintes informações: firstName, lastName, nickname, adress, bio;
 
-- Documentação da API, suas rotas e parâmetros.
-- Documentação dos requisitos necessários para rodar a aplicação.
+#### Listar um único usuário
 
-##### **Diferencial**
+- Rota: `router.get('/:nickname', usersController.get);`
+- Passe por paramêtro de rota o nickname do usuário que gostaria de visualizar
 
-- Criação de suíte de testes unitários.
-- Containerização da aplicação com Docker.
-- Live demo da aplicação.
+#### Listar usuários filtrados pelos campos `nome` ou `sobrenome`
 
----
+- Rota: `router.get('/', usersController.list);`
+- Passe por paramêtro de consulta o primeiro nome e/ou sobrenome dos usuários que gostaria de visualizar
 
-##### RF
+#### Alterar o sobrenome ou a bio de um usuário
 
-- A entidade de Usuário deve possuir as seguintes informações:
+- Rota: `router.put('/:id', usersController.update);`
+- Passe por paramêtro de rota o id do usuário que gostaria de editar
+
+#### Alterar o nickname de um usuário
+
+- Rota: `router.patch('/:id', usersController.updateNickname);`
+- Passe por paramêtro de rota o id do usuário que gostaria de editar o nickname
+
+#### Deletar um usuário
+
+- Rota: `router.delete('/:id', usersController.delete);`
+- Passe por paramêtro de rota o id do usuário que gostaria de deletar
+
+##### A entidade usuário:
+
   - id: string, (primário)(gerado automaticamente),
   - name: string,
   - lastname: string,
@@ -50,13 +66,13 @@
   - createdAt: Date,
   - updatedAt: Date
 
-- Métodos:
-  - [] Cria um novo usuário recebendo os dados pelo corpo da requisição: retorna os dados do usuário criado com status correspondente.
+#### Métodos:
+  - [x] Cria um novo usuário recebendo os dados pelo corpo da requisição: retorna os dados do usuário criado com status correspondente.
     - Se nickname já existe, retornar status e mensagem de erro.
-  - [] Listar todos os usuários cadastrados filtrados pelos campos `nome` e/ou `sobrenome`, filtrados por parâmetros de consulta: retorna um array de usuários.
-  - [] Listar um usuário pelo nickname passado como parâmetro: retorna um único usuário com nome, sobrenome e nickname.
-  - [] Alterar o sobrenome e o endereço do usuário recebido no corpo da requisição, baseado no id recebido como parâmetro de rota: retorna o usuário alterado com as novas informações.
-  - [] Alterar o nickname de um usuário recebido no corpo da requisição, baseado no id recebido como parâmetro de rota: retorna o usuário alterado com as novas informações.
+  - [x] Listar todos os usuários cadastrados filtrados pelos campos `nome` e/ou `sobrenome`, filtrados por parâmetros de consulta: retorna um array de usuários.
+  - [x] Listar um usuário pelo nickname passado como parâmetro: retorna um único usuário com nome, sobrenome e nickname.
+  - [x] Alterar o sobrenome e o endereço do usuário recebido no corpo da requisição, baseado no id recebido como parâmetro de rota: retorna o usuário alterado com as novas informações.
+  - [x] Alterar o nickname de um usuário recebido no corpo da requisição, baseado no id recebido como parâmetro de rota: retorna o usuário alterado com as novas informações.
     - Se o nickname passado já existir, deve retornar status e mensagem de erro.
-  - [] Deletar um usuário baseado no id recebido como parâmetro de rota: retorna o status de sucesso.
+  - [x] Deletar um usuário baseado no id recebido como parâmetro de rota: retorna o status de sucesso.
 
