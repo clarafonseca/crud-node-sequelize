@@ -7,7 +7,6 @@ module.exports = {
       const response = await usersService.create(req.body);
       return res.status(StatusCodes.CREATED).json(response);
     } catch (error) {
-      console.error(error);
       return res
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(error.message);
@@ -18,7 +17,6 @@ module.exports = {
       const response = await usersService.get(req.params.nickname);
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
-      console.error(error);
       return res
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(error.message);
@@ -36,7 +34,6 @@ module.exports = {
       const response = await usersService.list(req.query);
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
-      console.error(error);
       return res
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(error.message);
@@ -48,7 +45,6 @@ module.exports = {
 
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
-      console.error(error);
       return res
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(error.message);
@@ -60,7 +56,6 @@ module.exports = {
 
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
-      console.error(error);
       return res
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(error.message);
@@ -72,7 +67,6 @@ module.exports = {
 
       return res.status(StatusCodes.OK).json(response);
     } catch (error) {
-      console.error(error);
       return res
         .status(error.status || StatusCodes.INTERNAL_SERVER_ERROR)
         .json(error.message);
