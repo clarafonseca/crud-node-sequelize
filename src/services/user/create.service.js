@@ -20,6 +20,7 @@ module.exports.create = async (body) => {
     where: {
       nickname: validated.nickname,
     },
+    paranoid: false
   });
 
   if (user) {

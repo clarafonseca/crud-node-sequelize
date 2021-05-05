@@ -29,6 +29,7 @@ module.exports.patch = async (id, body) => {
     where: {
       nickname: validated.nickname,
     },
+    paranoid: false
   });
 
   if (nickname) {
